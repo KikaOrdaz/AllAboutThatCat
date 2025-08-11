@@ -19,7 +19,7 @@ struct ContentView: View {
         //        .padding()
         TabView {
             Tab("All Cats", systemImage: "cat") {
-                //                ReceivedView()
+                AllCatsView()
             }
             
             
