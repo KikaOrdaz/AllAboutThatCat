@@ -30,7 +30,7 @@ func getCatBreeds() async throws -> [CatBreed] {
     do {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
-        print("Valid data!")
+//        print("Valid data!")
         return try decoder.decode([CatBreed].self, from: data)
     } catch {
         throw CatError.invalidData

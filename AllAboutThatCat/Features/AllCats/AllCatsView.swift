@@ -15,26 +15,29 @@ struct AllCatsView : View {
     
     private let emptyCat: Cat = Cat(id: "", url: "", width: 1, height: 1, breeds: [])
     
+    let columns = [
+            GridItem(.flexible(), spacing: 16),
+            GridItem(.flexible(), spacing: 16)
+        ]
 
     var body: some View {
         ScrollView{
-            ForEach(cats ?? [emptyCat]){ cat in
-                
-                Grid{
-                    
-                    Text(cat.breeds.first?.name ?? "")
-                    
-                    AsyncImage(url: URL(string: cat.url)){ image in
-                        image
-                            .resizable()
-                            .frame(width: cat.width * 0.25, height: cat.height * 0.25)
-                    } placeholder: {
-                        
+                LazyVGrid(columns: columns, spacing: 16){
+                    ForEach(cats ?? [emptyCat]){ cat in
+                        VStack{
+                            CatImageView(cat: cat)
+                            Text(cat.breeds.first?.name ?? "")
+                        }
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 15)
+                                .fill(Color(.systemBackground))
+                                .shadow(radius: 5)
+                        )
+                        .padding(.horizontal)
                     }
                     
                 }
-               
-            }
                 
             
         }
